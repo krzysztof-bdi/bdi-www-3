@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Raport: Przepa\u015b\u0107 wdro\u017ceniowa AI",
+    "slug": "przepasc-wdrozen",
+    "date": "2025-09-01",
+    "featured_image": "/assets/1.5.1.svg",
+    "category_primary": "Raport",
+    "segment_target": "Liderzy",
+    "is_lead_magnet": true
+  },
+  {
+    "title": "SOB w praktyce",
+    "slug": "sob-w-praktyce",
+    "date": "2025-08-10",
+    "featured_image": "/assets/1.5.2.svg",
+    "category_primary": "Whitepaper",
+    "segment_target": "Og\u00f3lne"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "name": "bdi-www",
+  "private": true,
+  "version": "4.2.0",
+  "engines": { "node": ">=18.18" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "build:gcp": "cross-env DEPLOY_TARGET=GCP next build && next export",
+    "deploy:gcp": "node scripts/deploy-gcp.mjs"
+  },
+  "dependencies": {
+    "next": "14.2.12",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "clsx": "2.1.1",
+    "framer-motion": "11.2.10",
+    "lucide-react": "0.453.0",
+    "fuse.js": "7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.30",
+    "@types/react": "18.3.7",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.47",
+    "tailwindcss": "3.4.13",
+    "typescript": "5.6.3",
+    "cross-env": "7.0.3"
+  }
+}

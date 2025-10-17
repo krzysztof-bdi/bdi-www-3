@@ -1,0 +1,20 @@
+{
+  "dla-liderow": {
+    "title": "Dla Liderów",
+    "intro": "Strategia, governance i B+R jako usługa. Szybciej od slajdów do wdrożeń.",
+    "bullets": [
+      "SOB: strategia → procedury → automatyzacje",
+      "Governance AI & cyber by design",
+      "Eksperymenty B+R i pilotaże w 90 dni"
+    ]
+  },
+  "nasz-system": {
+    "title": "Nasz System",
+    "intro": "System Operacyjny Baltic (SOB): SSOT • Automatyzacja • Human‑in‑the‑Loop.",
+    "bullets": [
+      "Jedno źródło prawdy (SSOT) dla treści i procesów",
+      "Przepisywalne playbooki i checklisty do operacjonalizacji",
+      "Miary wpływu: Odporność 360 i Rozwój Umiejętności"
+    ]
+  }
+}

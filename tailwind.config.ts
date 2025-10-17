@@ -1,0 +1,23 @@
+import type { Config } from 'tailwindcss'
+const config: Config = {
+  content: ['./app/**/*.{ts,tsx}','./components/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#0A192F',
+        accent: '#64FFDA',
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#8892B0',
+        'background-secondary': '#112240'
+      },
+      fontFamily: {
+        heading: ['var(--font-heading)'],
+        body: ['var(--font-body)']
+      },
+      boxShadow: { card: '0 10px 30px -10px rgba(2,12,27,0.7)' },
+      borderRadius: { xl:'1rem', '2xl':'1.25rem' }
+    }
+  },
+  plugins: []
+}
+export default config

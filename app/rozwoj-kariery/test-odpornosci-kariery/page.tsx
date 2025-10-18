@@ -1,56 +1,93 @@
 'use client'
-import { useMemo, useState } from 'react'
-type Q = { id:string; text:string; weight:number }
-const QUESTIONS: Q[] = [
-  { id:'q1', text:'Czy masz zmapowane procesy kluczowe?', weight:2 },
-  { id:'q2', text:'Czy regularnie testujesz kopie zapasowe?', weight:2 },
-  { id:'q3', text:'Czy wykorzystujesz automatyzacje (RPA/AI) w operacjach?', weight:1 },
-  { id:'q4', text:'Czy posiadasz plan ciągłości działania (BCP)?', weight:3 },
-  { id:'q5', text:'Czy zespół przeszedł szkolenia z AI/cyber w 12 m-cach?', weight:1 }
-]
+import { useState } from 'react'
+
+type Answer = { q: string; v: number }
+
 export default function QuizPage(){
-  const [answers, setAnswers] = useState<Record<string, number>>({})
-  const score = useMemo(()=> Object.entries(answers).reduce((s,[id,v])=>{
-    const q = QUESTIONS.find(q=>q.id===id)!; return s + v * q.weight
-  },0), [answers])
-  const max = useMemo(()=> QUESTIONS.reduce((s,q)=> s + 3*q.weight, 0), [])
-  const level = useMemo(()=>{
-    const pct = score / max
-    if (pct >= 0.75) return { label:'Wysoka odporność', color:'text-green-400' }
-    if (pct >= 0.45) return { label:'Średnia odporność', color:'text-yellow-400' }
-    return { label:'Niska odporność', color:'text-red-400' }
-  }, [score, max])
-  function set(id:string, v:number){ setAnswers(a=> ({ ...a, [id]: v })) }
-  async function submitLead(){
-    const payload = { Segment_ID: 'Career', Quiz_Score: score, Answers: answers }
-    await fetch('/api/lead-quiz', { method:'POST', body: JSON.stringify(payload) })
-    alert('Dziękujemy! Wynik zapisany — skontaktujemy się z rekomendacją ścieżki.')
+  const [email, setEmail] = useState('')
+  const [answers, setAnswers] = useState<Answer[]>([])
+  const [error, setError] = useState<string|undefined>()
+  const [done, setDone] = useState(false)
+  const [sending, setSending] = useState(false)
+
+  const questions = [
+    { id:'q1', t:'Jak oceniasz gotowość do zmiany?', max:5 },
+    { id:'q2', t:'Czy masz plan kompetencyjny?', max:5 },
+    { id:'q3', t:'Twoja sieć wsparcia zawodowego?', max:5 },
+  ]
+
+  function setVal(qid:string, v:number){
+    const next = answers.filter(a=>a.q!==qid).concat({ q: qid, v })
+    setAnswers(next)
   }
+
+  async function submit(e: React.FormEvent){
+    e.preventDefault()
+    setError(undefined)
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setError('Podaj poprawny e-mail.')
+    if (answers.length < questions.length) return setError('Odpowiedz na wszystkie pytania.')
+
+    const score = answers.reduce((s,a)=> s + a.v, 0)
+
+    setSending(true)
+    try{
+      const res = await fetch('/api/lead-quiz', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          Email: email,
+          Score: score,
+          Answers: answers,
+          Source: 'Quiz WWW'
+        })
+      })
+      if (!res.ok) throw new Error('Błąd wysyłki')
+      setDone(true)
+    }catch(err:any){
+      setError(err.message || 'Błąd wysyłki')
+    }finally{
+      setSending(false)
+    }
+  }
+
+  if (done){
+    return (
+      <section className="container-p py-12 max-w-2xl">
+        <h1 className="font-heading text-3xl mb-2">Dziękujemy!</h1>
+        <p className="text-text-secondary">Wynik zapisany. Skontaktujemy się z propozycją dalszych kroków.</p>
+      </section>
+    )
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl card p-6">
-        <h1 className="font-heading text-3xl mb-1">Test Odporności Kariery</h1>
-        <p className="text-text-secondary mb-6">Oceń swoją gotowość na automatyzację i zakłócenia.</p>
-        <ol className="space-y-5">
-          {QUESTIONS.map(q=> (
-            <li key={q.id}>
-              <div className="mb-2">{q.text}</div>
-              <div className="flex gap-2">
-                {[0,1,2,3].map(v=> (
-                  <button key={v} onClick={()=>set(q.id, v)} className={`px-3 py-2 rounded-xl border ${answers[q.id]===v ? 'border-accent text-accent' : 'border-white/10 text-text-secondary'} hover:border-accent/60`}>
-                    {v}
-                  </button>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-8 p-4 rounded-xl bg-background-secondary/60 border border-white/10">
-          <div className="text-sm text-text-secondary mb-1">Wynik: {score} / {max}</div>
-          <div className={`font-heading ${level.color}`}>{level.label}</div>
+    <section className="container-p py-12 max-w-2xl">
+      <h1 className="font-heading text-3xl mb-4">Test odporności kariery</h1>
+      <form onSubmit={submit} className="card p-6 space-y-6">
+        {questions.map(q=>(
+          <div key={q.id}>
+            <div className="mb-2">{q.t}</div>
+            <div className="flex gap-3">
+              {Array.from({length:q.max}, (_,i)=>i+1).map(v=>(
+                <label key={v} className="inline-flex items-center gap-2">
+                  <input type="radio" name={q.id} onChange={()=>setVal(q.id, v)} /> {v}
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <div>
+          <label className="block mb-1 text-sm text-text-secondary">E-mail</label>
+          <input type="email" className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={email} onChange={e=>setEmail(e.target.value)} />
         </div>
-        <button onClick={submitLead} className="link-cta mt-6">Zapisz wynik i pobierz rekomendacje</button>
-      </div>
-    </div>
+
+        {/* honeypot */}
+        <input type="text" name="company" className="hidden" tabIndex={-1} aria-hidden="true" />
+
+        {error && <div className="text-red-400 text-sm">{error}</div>}
+        <button className="link-cta" disabled={sending}>{sending ? 'Wysyłanie…' : 'Zapisz wynik'}</button>
+      </form>
+    </section>
   )
 }

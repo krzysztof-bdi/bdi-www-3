@@ -1,2 +1,45 @@
 import { NextResponse } from 'next/server'
-export async function POST(req: Request){ const data = await req.json(); console.log('lead-finansowanie', data); return NextResponse.json({ ok:true }) }
+import { sendZoho } from '@/lib/zoho'
+
+const WINDOW_MS = 60_000
+const MAX_PER_WINDOW = 10
+const hits = new Map<string, {count:number, ts:number}>()
+
+export async function POST(req: Request){
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+  const now = Date.now()
+  const rec = hits.get(ip)
+  if (!rec || now - rec.ts > WINDOW_MS) hits.set(ip, { count: 1, ts: now })
+  else if (rec.count >= MAX_PER_WINDOW) return NextResponse.json({ ok:false, error:'Too many requests' }, { status: 429 })
+  else { rec.count++; hits.set(ip, rec) }
+
+  const data = await req.json().catch(()=> ({} as any))
+
+  if (data.Company && String(data.Company).trim().length > 0) {
+    return NextResponse.json({ ok:true })
+  }
+
+  // walidacja minimalna
+  if (!data.Email || typeof data.Estimate !== 'number') {
+    return NextResponse.json({ ok:false, error:'Invalid payload' }, { status: 400 })
+  }
+
+  const payload = {
+    Type: 'Kalkulator',
+    Email: data.Email,
+    Name: data.Name ?? '',
+    Estimate: data.Estimate,
+    Inputs: data.Inputs ?? {},
+    Source: data.Source ?? 'Kalkulator WWW',
+    ip, ts: new Date().toISOString()
+  }
+
+  try {
+    const res = await sendZoho(payload)
+    console.log('lead-finansowanie', { ...payload, sentToZoho: !res.dryRun })
+    return NextResponse.json({ ok:true })
+  } catch (e:any) {
+    console.error('zoho-fail-fin', e?.message)
+    return NextResponse.json({ ok:false, error:'Integration error' }, { status: 502 })
+  }
+}

@@ -1,52 +1,69 @@
-'use client'
-import { useEffect, useMemo, useState } from 'react'
+import articles from '@/../public/search-index.json'
 import Link from 'next/link'
-import Image from 'next/image'
-import Fuse from 'fuse.js'
-export default function Knowledge(){
-  const [items, setItems] = useState<any[]>([])
-  const [q, setQ] = useState('')
-  const [seg, setSeg] = useState('')
-  const [cat, setCat] = useState('')
-  useEffect(()=>{ fetch('/search-index.json').then(r=>r.json()).then(setItems) },[])
-  const fuse = useMemo(()=> new Fuse(items, { keys:['title','segment_target','category_primary'] }), [items])
-  const out = useMemo(()=>{
-    let arr = q ? fuse.search(q).map(r=>r.item) : items
-    if (seg) arr = arr.filter(i=> i.segment_target === seg)
-    if (cat) arr = arr.filter(i=> i.category_primary === cat)
-    return arr
-  },[items, q, seg, cat, fuse])
+
+type Article = {
+  title: string; slug: string; date: string; featured_image?: string;
+  category_primary?: string; segment_target?: string; is_lead_magnet?: boolean;
+  tags_secondary?: string[];
+}
+
+const PAGE_SIZE = 6
+
+export default function Page({ searchParams }: { searchParams: { page?: string }}) {
+  const page = Math.max(1, parseInt(searchParams.page ?? '1', 10) || 1)
+
+  // Sortowanie wpisów malejąco po dacie
+  const sortedArticles = (articles as Article[]).slice().sort((a,b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
+
+  const totalArticles = sortedArticles.length
+  const totalPages = Math.max(1, Math.ceil(totalArticles / PAGE_SIZE))
+  const startIndex = (page - 1) * PAGE_SIZE
+  const paginatedItems = sortedArticles.slice(startIndex, startIndex + PAGE_SIZE)
+
   return (
     <section className="container-p py-12">
       <h1 className="font-heading text-4xl mb-6">Wiedza</h1>
-      <div className="mb-6 grid md:grid-cols-3 gap-3">
-        <input className="card p-3" placeholder="Szukaj..." value={q} onChange={e=>setQ(e.target.value)} />
-        <select className="card p-3" value={seg} onChange={e=>setSeg(e.target.value)}>
-          <option value="">Segment</option>
-          <option>Liderzy</option>
-          <option>MŚP</option>
-          <option>Administracja</option>
-        </select>
-        <select className="card p-3" value={cat} onChange={e=>setCat(e.target.value)}>
-          <option value="">Kategoria</option>
-          <option>Raport</option>
-          <option>Whitepaper</option>
-          <option>Artykuł</option>
-        </select>
-      </div>
-      <div className="grid md:grid-cols-3 gap-6">
-        {out.map(i=> (
-          <Link key={i.slug} href={`/wiedza/${i.slug}`} className="card overflow-hidden group">
-            {i.featured_image && (
-              <Image src={i.featured_image} alt="" width={800} height={600} className="w-full h-48 object-cover" />
+
+      {paginatedItems.length === 0 && <p className="text-text-secondary">Brak treści do wyświetlenia.</p>}
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {paginatedItems.map(a => (
+          <article key={a.slug} className="card p-4">
+            {a.featured_image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={a.featured_image} alt="" className="rounded-xl border border-white/10 mb-3" />
             )}
-            <div className="p-4">
-              <h3 className="font-heading group-hover:text-accent">{i.title}</h3>
-              {i.is_lead_magnet && <span className="mt-2 inline-block text-xs text-accent">Lead magnet</span>}
+            <div className="text-xs text-text-secondary mb-1">
+              {a.category_primary} • {new Date(a.date).toLocaleDateString('pl-PL')}
             </div>
-          </Link>
+            <h2 className="font-heading text-xl mb-2">
+              <Link href={`/wiedza/${a.slug}`}>{a.title}</Link>
+            </h2>
+            {a.tags_secondary && (
+              <div className="flex flex-wrap gap-2 text-xs text-text-secondary">
+                {a.tags_secondary.map(t => <span key={t} className="px-2 py-1 rounded-full bg-white/5 border border-white/10">{t}</span>)}
+              </div>
+            )}
+          </article>
         ))}
       </div>
+
+      {/* Paginacja */}
+      {totalPages > 1 && (
+        <div className="flex items-center gap-3 mt-8">
+          <PagerLink page={page-1} disabled={page<=1}>« Poprzednia</PagerLink>
+          <span className="text-sm text-text-secondary">Strona {page} / {totalPages}</span>
+          <PagerLink page={page+1} disabled={page>=totalPages}>Następna »</PagerLink>
+        </div>
+      )}
     </section>
   )
+}
+
+function PagerLink({ page, disabled, children }:{ page:number, disabled?:boolean, children:React.ReactNode }) {
+  if (disabled) return <span className="opacity-50">{children}</span>
+  const href = page <= 1 ? '/wiedza' : `/wiedza?page=${page}`
+  return <Link href={href} className="link-cta">{children}</Link>
 }

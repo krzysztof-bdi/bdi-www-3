@@ -14,6 +14,7 @@ export default function Footer(){
           <ul className="space-y-1">
             <li><Link href="/polityka-prywatnosci" className="hover:text-white">Polityka prywatności</Link></li>
             <li><Link href="/regulamin" className="hover:text-white">Regulamin</Link></li>
+            <li><Link href="/kontakt" className="hover:text-white">Kontakt</Link></li>
           </ul>
         </div>
         <div>
@@ -25,3 +26,4 @@ export default function Footer(){
     </footer>
   )
 }
+

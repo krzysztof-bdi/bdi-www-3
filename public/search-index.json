@@ -1,12 +1,13 @@
 [
   {
-    "title": "Raport: Przepa\u015b\u0107 wdro\u017ceniowa AI",
+    "title": "Raport: Przepaść wdrożeniowa AI",
     "slug": "przepasc-wdrozen",
     "date": "2025-09-01",
     "featured_image": "/assets/1.5.1.svg",
     "category_primary": "Raport",
     "segment_target": "Liderzy",
-    "is_lead_magnet": true
+    "is_lead_magnet": true,
+    "tags_secondary": ["AI", "wdrożenia", "governance"]
   },
   {
     "title": "SOB w praktyce",
@@ -14,6 +15,16 @@
     "date": "2025-08-10",
     "featured_image": "/assets/1.5.2.svg",
     "category_primary": "Whitepaper",
-    "segment_target": "Og\u00f3lne"
+    "segment_target": "Ogólne",
+    "tags_secondary": ["SOB", "SSOT", "automatyzacja"]
+  },
+  {
+    "title": "Case: Cyfrowy Opiekun MŚP",
+    "slug": "cyfrowy-opiekun",
+    "date": "2025-07-12",
+    "featured_image": "/assets/1.5.3.svg",
+    "category_primary": "Case",
+    "segment_target": "MŚP",
+    "tags_secondary": ["finansowanie", "automatyzacja"]
   }
 ]

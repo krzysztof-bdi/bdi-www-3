@@ -1,38 +1,38 @@
 {
   "dla-liderow": {
-    "title": "Dla Liderów Zespołów",
-    "intro": "Odporność, sprawność i zaufanie — kluczowe wskaźniki efektywności zespołu w erze AI. Pomagamy je mierzyć i rozwijać.",
+    "title": "Dla Liderów",
+    "intro": "Strategia, governance i B+R jako usługa. Szybciej od slajdów do wdrożeń.",
     "bullets": [
-      "Ocena odporności zespołu (diagnoza 360)",
-      "Wskaźniki wpływu i efektywności (metria)",
-      "Zaufanie w rozproszonych zespołach (kompetencje)"
+      "SOB: strategia → procedury → automatyzacje",
+      "Governance AI & cyber by design",
+      "Eksperymenty B+R i pilotaże w 90 dni"
     ]
   },
   "nasz-system": {
-    "title": "Nasz System Pracy",
-    "intro": "Łączymy sprawdzoną metodykę, dane i technologię, aby wspierać liderów w podejmowaniu lepszych decyzji.",
+    "title": "Nasz System",
+    "intro": "System Operacyjny Baltic (SOB): SSOT • Automatyzacja • Human-in-the-Loop.",
     "bullets": [
-      "Metodyka: zwinne podejście, iteracyjne doskonalenie",
-      "Dane: od pomiaru do wglądu i rekomendacji",
-      "Technologia: automatyzacja, AI, platformy wsparcia"
+      "Jedno źródło prawdy (SSOT) dla treści i procesów",
+      "Przepisywalne playbooki i checklisty do operacjonalizacji",
+      "Miary wpływu: Odporność 360 i Rozwój Umiejętności"
     ]
   },
   "centra-kompetencji": {
     "title": "Centra Kompetencji",
     "intro": "AI, cyber, dane i wdrożenia — zespoły zadaniowe, które dowożą wyniki.",
     "bullets": [
-      "CK-AI: od prototypu do produkcji w 90 dni",
-      "CK-Cyber: zgodność + odporność (NIS2/ISO27001)",
-      "CK-Dane: jakość, katalog, wskaźniki wpływu"
+      "CK-AI: od prototypu do produkcji w 90 dni (MVP, ROI, rollout)",
+      "CK-Cyber: zgodność + odporność (NIS2, ISO 27001, testy odtwarzania)",
+      "CK-Dane: jakość, katalog, wskaźniki wpływu, pipeline’y ETL/ELT"
     ]
   },
   "nasz-wplyw": {
     "title": "Nasz Wpływ",
     "intro": "Mierzymy efekty: oszczędzony czas, błędy ↓, przychody ↑, kompetencje 4IR.",
     "bullets": [
-      "Odporność 360: zestaw metryk operacyjnych",
-      "Ścieżki umiejętności: mapa kompetencji zespołu",
-      "Case’y: krótko i konkretnie — co zadziałało"
+      "Odporność 360: zestaw metryk operacyjnych i bezpieczeństwa",
+      "Ścieżki umiejętności: mapa kompetencji zespołu i luki szkoleniowe",
+      "Case’y: krótko i konkretnie — co zadziałało, w jakim horyzoncie, jaki KPI"
     ]
   }
 }

@@ -20,6 +20,6 @@ export function listPrograms(region: string, profile: 'osoba'|'msp'|'enterprise'
 export function estimateGrantCost(program: Program, trainingCostPln: number) {
   const maxByCoverage = Math.round(trainingCostPln * program.coverage)
   const grant = Math.min(maxByCoverage, program.cap_pln)
-  const wkładWłasny = Math.max(trainingCostPln - grant, 0)
-  return { grant, wkładWłasny }
+  const wkladWlasny = Math.max(trainingCostPln - grant, 0)
+  return { grant, wkladWlasny }
 }

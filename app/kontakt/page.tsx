@@ -1,17 +1,28 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { sendLeadHmac } from '@/lib/sendLead'
 
-const ENDPOINT = 'https://bdi-kr.app.n8n.cloud/webhook/2e65f3d4-e467-427c-b381-42b49a1a8ca0';
+async function postJSON(url: string, payload: any) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) throw new Error(`HTTP error ${res.status}: ${await res.text()}`)
+  try {
+    return await res.json()
+  } catch {
+    return {}
+  }
+}
 
-export default function KontaktPage(){
-  const [state, setState] = useState({ name:'', email:'', message:'', agree:false, company:'' })
+export default function KontaktPage() {
+  const [state, setState] = useState({ name: '', email: '', message: '', agree: false, company: '' })
   const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
-  const [error, setError] = useState<string|undefined>(undefined)
+  const [error, setError] = useState<string | undefined>(undefined)
 
-  async function submit(e: React.FormEvent){
+  async function submit(e: React.FormEvent) {
     e.preventDefault()
     setError(undefined)
 
@@ -21,23 +32,22 @@ export default function KontaktPage(){
     if (!state.agree) return setError('Zaznacz zgodę na przetwarzanie danych.')
 
     setSending(true)
-    try{
-      await sendLeadHmac(ENDPOINT, {
-        Name: state.name,
-        Email: state.email,
-        Message: state.message,
-        Source: 'Formularz Kontaktowy WWW',
+    try {
+      await postJSON('/api/contact', {
+        name: state.name,
+        email: state.email,
+        message: state.message,
         company: state.company, // Honeypot
-      });
+      })
       setDone(true)
-    }catch(err:any){
+    } catch (err: any) {
       setError(err.message || 'Błąd wysyłki')
-    }finally{
+    } finally {
       setSending(false)
     }
   }
 
-  if (done){
+  if (done) {
     return (
       <section className="container-p py-12 max-w-2xl">
         <h1 className="font-heading text-3xl mb-2">Dziękujemy!</h1>
@@ -54,18 +64,18 @@ export default function KontaktPage(){
       <form onSubmit={submit} className="card p-6 space-y-4">
         <div>
           <label className="block mb-1 text-sm text-text-secondary">Imię i nazwisko</label>
-          <input className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.name} onChange={e=>setState(s=>({...s, name:e.target.value}))}/>
+          <input className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.name} onChange={e => setState(s => ({ ...s, name: e.target.value }))} />
         </div>
         <div>
           <label className="block mb-1 text-sm text-text-secondary">E-mail</label>
-          <input type="email" className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.email} onChange={e=>setState(s=>({...s, email:e.target.value}))}/>
+          <input type="email" className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.email} onChange={e => setState(s => ({ ...s, email: e.target.value }))} />
         </div>
         <div>
           <label className="block mb-1 text-sm text-text-secondary">Wiadomość</label>
-          <textarea rows={6} className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.message} onChange={e=>setState(s=>({...s, message:e.target.value}))}/>
+          <textarea rows={6} className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.message} onChange={e => setState(s => ({ ...s, message: e.target.value }))} />
         </div>
 
-        {/* Honeypot field */}
+        {/* Honeypot Field */}
         <input
           type="text"
           name="company"
@@ -78,7 +88,7 @@ export default function KontaktPage(){
         />
 
         <label className="flex items-start gap-3 text-sm text-text-secondary">
-          <input type="checkbox" className="mt-1" checked={state.agree} onChange={e=>setState(s=>({...s, agree:e.target.checked}))}/>
+          <input type="checkbox" className="mt-1" checked={state.agree} onChange={e => setState(s => ({ ...s, agree: e.target.checked }))} />
           <span>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <Link href="/polityka-prywatnosci" className="underline">Polityką prywatności</Link>.</span>
         </label>
 

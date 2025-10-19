@@ -1,90 +1,95 @@
 'use client'
-import { useState } from 'react'
-import Link from 'next/link'
-import { sendLeadHmac } from '@/lib/sendLead'
+import { useMemo, useState } from 'react'
 
-const ENDPOINT = 'https://bdi-kr.app.n8n.cloud/webhook/2e65f3d4-e467-427c-b381-42b49a1a8ca0';
+async function postJSON(url: string, payload: any) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) throw new Error(`HTTP error ${res.status}: ${await res.text()}`)
+  try {
+    return await res.json()
+  } catch {
+    return {}
+  }
+}
 
-export default function KontaktPage(){
-  const [state, setState] = useState({ name:'', email:'', message:'', agree:false, company:'' })
-  const [sending, setSending] = useState(false)
+export default function KalkulatorPage() {
+  const [email, setEmail] = useState('')
+  const [kwota, setKwota] = useState<number | ''>('')
+  const [okres, setOkres] = useState<number | ''>('') // w miesiącach
+  const [error, setError] = useState<string | undefined>()
   const [done, setDone] = useState(false)
-  const [error, setError] = useState<string|undefined>(undefined)
+  const [sending, setSending] = useState(false)
 
-  async function submit(e: React.FormEvent){
+  const estimate = useMemo(() => {
+    const k = typeof kwota === 'number' ? kwota : 0
+    const o = typeof okres === 'number' ? okres : 0
+    // Prosta przykładowa kalkulacja:
+    return Math.max(0, Math.round(k * 0.3 + o * 100))
+  }, [kwota, okres])
+
+  async function submit(e: React.FormEvent) {
     e.preventDefault()
     setError(undefined)
-
-    if (!state.name.trim()) return setError('Podaj imię i nazwisko.')
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)) return setError('Podaj poprawny adres e-mail.')
-    if (state.message.trim().length < 10) return setError('Napisz min. 10 znaków.')
-    if (!state.agree) return setError('Zaznacz zgodę na przetwarzanie danych.')
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setError('Podaj poprawny e-mail.')
+    if (kwota === '' || kwota <= 0) return setError('Podaj kwotę > 0.')
+    if (okres === '' || okres <= 0) return setError('Podaj okres w miesiącach > 0.')
 
     setSending(true)
-    try{
-      await sendLeadHmac(ENDPOINT, {
-        Name: state.name,
-        Email: state.email,
-        Message: state.message,
-        Source: 'Formularz Kontaktowy WWW',
-        company: state.company, // Honeypot
-      });
+    try {
+      await postJSON('/api/lead-finansowanie', {
+        Name: "Uczestnik Kalkulatora", // Domyślna nazwa
+        Email: email,
+        Estimate: estimate,
+        Inputs: { kwota, okres },
+        Program_ID: "Startup", // Domyślna wartość, można ją później rozbudować
+      })
       setDone(true)
-    }catch(err:any){
+    } catch (err: any) {
       setError(err.message || 'Błąd wysyłki')
-    }finally{
+    } finally {
       setSending(false)
     }
   }
 
-  if (done){
+  if (done) {
     return (
       <section className="container-p py-12 max-w-2xl">
         <h1 className="font-heading text-3xl mb-2">Dziękujemy!</h1>
-        <p className="text-text-secondary">Twoja wiadomość została zapisana. Skontaktujemy się jak najszybciej.</p>
+        <p className="text-text-secondary">Zapisaliśmy Twoje dane — wrócimy z ofertą finansowania.</p>
       </section>
     )
   }
 
   return (
     <section className="container-p py-12 max-w-2xl">
-      <h1 className="font-heading text-3xl mb-2">Kontakt</h1>
-      <p className="text-text-secondary mb-6">Napisz do nas — odezwiemy się zwykle w 1 dzień roboczy.</p>
-
+      <h1 className="font-heading text-3xl mb-4">Kalkulator finansowania rozwoju</h1>
       <form onSubmit={submit} className="card p-6 space-y-4">
         <div>
-          <label className="block mb-1 text-sm text-text-secondary">Imię i nazwisko</label>
-          <input className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.name} onChange={e=>setState(s=>({...s, name:e.target.value}))}/>
+          <label className="block mb-1 text-sm text-text-secondary">Kwota (PLN)</label>
+          <input type="number" min={0} className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10"
+            value={kwota} onChange={e => setKwota(e.target.value ? Number(e.target.value) : '')} />
         </div>
         <div>
-          <label className="block mb-1 text-sm text-text-secondary">E-mail</label>
-          <input type="email" className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.email} onChange={e=>setState(s=>({...s, email:e.target.value}))}/>
-        </div>
-        <div>
-          <label className="block mb-1 text-sm text-text-secondary">Wiadomość</label>
-          <textarea rows={6} className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.message} onChange={e=>setState(s=>({...s, message:e.target.value}))}/>
+          <label className="block mb-1 text-sm text-text-secondary">Okres (miesiące)</label>
+          <input type="number" min={1} className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10"
+            value={okres} onChange={e => setOkres(e.target.value ? Number(e.target.value) : '')} />
         </div>
 
-        {/* Honeypot field */}
-        <input
-          type="text"
-          name="company"
-          className="hidden"
-          autoComplete="off"
-          tabIndex={-1}
-          aria-hidden="true"
-          value={state.company}
-          onChange={e => setState(s => ({...s, company: e.target.value}))}
-        />
+        <div className="p-3 rounded-xl border border-white/10 bg-white/5">
+          Szacowana kwota wsparcia: <span className="font-heading text-xl">{estimate.toLocaleString('pl-PL')} PLN</span>
+        </div>
 
-        <label className="flex items-start gap-3 text-sm text-text-secondary">
-          <input type="checkbox" className="mt-1" checked={state.agree} onChange={e=>setState(s=>({...s, agree:e.target.checked}))}/>
-          <span>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <Link href="/polityka-prywatnosci" className="underline">Polityką prywatności</Link>.</span>
-        </label>
+        <div className="pt-4 border-t border-white/10">
+          <label className="block mb-1 text-sm text-text-secondary">E-mail do wysyłki oferty</label>
+          <input type="email" className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10"
+            value={email} onChange={e => setEmail(e.target.value)} />
+        </div>
 
         {error && <div className="text-red-400 text-sm">{error}</div>}
-
-        <button disabled={sending} className="link-cta">{sending ? 'Wysyłanie…' : 'Wyślij'}</button>
+        <button className="link-cta" disabled={sending}>{sending ? 'Wysyłanie…' : 'Wyślij zapytanie'}</button>
       </form>
     </section>
   )

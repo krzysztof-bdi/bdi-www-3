@@ -1,9 +1,12 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import { sendLeadHmac } from '@/lib/sendLead'
+
+const ENDPOINT = 'https://bdi-kr.app.n8n.cloud/webhook/2e65f3d4-e467-427c-b381-42b49a1a8ca0';
 
 export default function KontaktPage(){
-  const [state, setState] = useState({ name:'', email:'', message:'', agree:false, company:'' }) // Dodajemy pole `company` dla honeypot
+  const [state, setState] = useState({ name:'', email:'', message:'', agree:false, company:'' })
   const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState<string|undefined>(undefined)
@@ -19,18 +22,13 @@ export default function KontaktPage(){
 
     setSending(true)
     try{
-      const res = await fetch('/api/contact', {
-        method:'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify({
-          Name: state.name,
-          Email: state.email,
-          Message: state.message,
-          Company: state.company, // Przesyłamy pole honeypot do API
-          Source: 'Kontakt WWW'
-        })
-      })
-      if (!res.ok) throw new Error('Błąd wysyłki')
+      await sendLeadHmac(ENDPOINT, {
+        Name: state.name,
+        Email: state.email,
+        Message: state.message,
+        Source: 'Formularz Kontaktowy WWW',
+        company: state.company, // Honeypot
+      });
       setDone(true)
     }catch(err:any){
       setError(err.message || 'Błąd wysyłki')
@@ -66,17 +64,17 @@ export default function KontaktPage(){
           <label className="block mb-1 text-sm text-text-secondary">Wiadomość</label>
           <textarea rows={6} className="w-full p-3 rounded-xl bg-background-secondary/60 border border-white/10" value={state.message} onChange={e=>setState(s=>({...s, message:e.target.value}))}/>
         </div>
-        
-        {/* Honeypot: ukryte pole dla botów */}
+
+        {/* Honeypot field */}
         <input
           type="text"
           name="company"
+          className="hidden"
           autoComplete="off"
           tabIndex={-1}
-          className="hidden"
           aria-hidden="true"
           value={state.company}
-          onChange={e=>setState(s=>({...s, company:e.target.value}))}
+          onChange={e => setState(s => ({...s, company: e.target.value}))}
         />
 
         <label className="flex items-start gap-3 text-sm text-text-secondary">

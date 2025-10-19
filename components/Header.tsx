@@ -4,22 +4,28 @@ import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
+// Pełna lista linków zgodna z dokumentacją
 const links = [
-  { href: '/dla-liderow', label: 'Dla liderów' },
-  { href: '/nasz-system', label: 'Nasz system' },
-  { href: '/centra-kompetencji', label: 'Centra kompetencji' },
-  { href: '/nasz-wplyw', label: 'Nasz wpływ' },
+  { href: '/', label: 'Start' },
+  { href: '/dla-liderow', label: 'Dla Liderów' },
+  { href: '/dla-msp', label: 'Dla MŚP' },
+  { href: '/dla-administracji', label: 'Dla Administracji' },
+  { href: '/rozwoj-kariery', label: 'Rozwój Kariery' },
+  { href: '/nasz-system', label: 'Nasz System' },
+  { href: '/centra-kompetencji', label: 'Centra Kompetencji' },
+  { href: '/centrum-zaufania', label: 'Centrum Zaufania' },
+  { href: '/nasz-wplyw', label: 'Nasz Wpływ' },
   { href: '/wiedza', label: 'Wiedza' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const pathname = usePathname()
   const panelRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
+  const pathname = usePathname()
 
-  // Zamykanie menu klawiszem Escape
+  // Zamykanie menu klawiszem ESC
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') setOpen(false)
@@ -46,14 +52,23 @@ export default function Header() {
       <div className="container-p h-16 flex items-center justify-between">
         <Link href="/" className="font-heading text-xl">BDI</Link>
 
-        {/* Menu na duże ekrany */}
-        <nav className="hidden md:flex gap-6">
+        {/* Menu na dużym ekranie */}
+        <nav className="hidden md:flex gap-4">
           {links.map(l => (
-            <Link key={l.href} href={l.href} className={clsx('text-sm text-text-secondary hover:text-white transition', pathname===l.href && 'text-white')}>{l.label}</Link>
+            <Link 
+              key={l.href} 
+              href={l.href} 
+              className={clsx(
+                'nav-link text-sm', 
+                (pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href))) && 'text-white'
+              )}
+            >
+              {l.label}
+            </Link>
           ))}
         </nav>
 
-        {/* Przycisk "Hamburger" na mobilne */}
+        {/* Przycisk menu mobilnego */}
         <button
           ref={btnRef}
           aria-label="Otwórz menu"
@@ -62,18 +77,30 @@ export default function Header() {
           onClick={()=>setOpen(v=>!v)}
         >
           <span className="sr-only">Menu</span>
-          <div className="text-xl">{open ? '✕' : '☰'}</div>
+          <div className="grid place-items-center h-full text-2xl">
+            {open ? '✕' : '☰'}
+          </div>
         </button>
       </div>
 
       {/* Panel menu mobilnego */}
       {open && (
         <div className="md:hidden border-t border-white/10">
-          <div ref={panelRef} className="container-p py-3 flex flex-col gap-2">
+          <nav ref={panelRef} className="container-p py-3 flex flex-col gap-2">
             {links.map(l => (
-              <Link key={l.href} href={l.href} className={clsx('py-2', pathname===l.href && 'font-bold')} onClick={()=>setOpen(false)}>{l.label}</Link>
+              <Link 
+                key={l.href} 
+                href={l.href} 
+                className={clsx(
+                  'py-2 block',
+                  (pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href))) ? 'text-white' : 'text-text-secondary'
+                )} 
+                onClick={()=>setOpen(false)}
+              >
+                {l.label}
+              </Link>
             ))}
-          </div>
+          </nav>
         </div>
       )}
     </header>

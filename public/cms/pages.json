@@ -8,6 +8,24 @@
       "Eksperymenty B+R i pilotaże w 90 dni"
     ]
   },
+  "dla-msp": {
+    "title": "Dla MŚP",
+    "intro": "Cyfrowy anioł stróż dla Twojej firmy. Automatyzacja, finansowanie i bezpieczeństwo.",
+    "bullets": [
+      "Analiza dojrzałości cyfrowej",
+      "Wdrożenie kluczowych automatyzacji",
+      "Dostęp do finansowania innowacji"
+    ]
+  },
+  "dla-administracji": {
+    "title": "Dla Administracji",
+    "intro": "Nowoczesne państwo oparte na danych i zaufaniu. Budujemy odporne systemy publiczne.",
+    "bullets": [
+      "Architektura korporacyjna dla sektora publicznego",
+      "Bezpieczeństwo danych i zgodność z regulacjami",
+      "Szkolenia i budowa kompetencji cyfrowych"
+    ]
+  },
   "nasz-system": {
     "title": "Nasz System",
     "intro": "System Operacyjny Baltic (SOB): SSOT • Automatyzacja • Human-in-the-Loop.",
@@ -22,8 +40,17 @@
     "intro": "AI, cyber, dane i wdrożenia — zespoły zadaniowe, które dowożą wyniki.",
     "bullets": [
       "CK-AI: od prototypu do produkcji w 90 dni (MVP, ROI, rollout)",
-      "CK-Cyber: zgodność + odporność (NIS2, ISO 27001, testy odtwarzania)",
+      "CK-Cyber: zgodność + odporność (NIS2, ISO 20001, testy odtwarzania)",
       "CK-Dane: jakość, katalog, wskaźniki wpływu, pipeline’y ETL/ELT"
+    ]
+  },
+  "centrum-zaufania": {
+    "title": "Centrum Zaufania",
+    "intro": "Transparentność, bezpieczeństwo i etyka w cyfrowym świecie. Twoje dane są u nas bezpieczne.",
+    "bullets": [
+      "Polityka Ochrony Danych Osobowych",
+      "Standardy bezpieczeństwa informacji",
+      "Zgłaszanie incydentów i podatności"
     ]
   },
   "nasz-wplyw": {

@@ -1,0 +1,30 @@
+{
+  "mazowieckie": [
+    {
+      "id": "MAZ-EDU-88",
+      "name": "Dofinansowanie szkoleń (Mazowieckie)",
+      "region": "mazowieckie",
+      "coverage": 0.88,
+      "cap_pln": 6000,
+      "category": "szkolenia",
+      "profil": ["osoba", "msp"],
+      "uwagi": "Maks. 6000 PLN dotacji, do 88% kosztu kwalifikowanego."
+    }
+  ],
+  "pomorskie": [
+    {
+      "id": "POM-EDU-95",
+      "name": "Dofinansowanie szkoleń (Pomorskie)",
+      "region": "pomorskie",
+      "coverage": 0.95,
+      "cap_pln": 9500,
+      "category": "szkolenia",
+      "profil": ["osoba", "msp"],
+      "uwagi": "Maks. 9500 PLN dotacji, do 95% kosztu kwalifikowanego."
+    }
+  ],
+  "dolnoslaskie": [], "kujawsko-pomorskie": [], "lubelskie": [], "lubuskie": [],
+  "lodzkie": [], "malopolskie": [], "opolskie": [], "podkarpackie": [],
+  "podlaskie": [], "slaskie": [], "swietokrzyskie": [], "warminsko-mazurskie": [],
+  "wielkopolskie": [], "zachodniopomorskie": []
+}

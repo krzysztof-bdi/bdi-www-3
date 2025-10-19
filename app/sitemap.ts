@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import articles from '@/../public/search-index.json'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://bdi-www-3.vercel.app' // TODO: podmień na produkcyjną
+  const base = 'https://www.baltic-digital.org'
   const staticPages = [
     '', 'dla-liderow', 'nasz-system', 'centra-kompetencji', 'nasz-wplyw', 'wiedza', 'kontakt', 'polityka-prywatnosci', 'regulamin'
   ].map(p => ({

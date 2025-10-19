@@ -1,0 +1,38 @@
+{
+  "title": "Test Odporności Kariery",
+  "intro": "Krótki test oceniający gotowość do zmian i tempo uczenia się. Wynik pomoże dobrać ścieżkę rozwoju.",
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "Jak często aktualizujesz swoje umiejętności cyfrowe?",
+      "choices": [
+        { "id": "A", "label": "Co miesiąc", "score": 3 },
+        { "id": "B", "label": "Kwartalnie", "score": 2 },
+        { "id": "C", "label": "Rzadziej", "score": 1 }
+      ]
+    },
+    {
+      "id": "Q2",
+      "text": "Jak reagujesz na nowe narzędzia w pracy?",
+      "choices": [
+        { "id": "A", "label": "Testuję od razu na małym zadaniu", "score": 3 },
+        { "id": "B", "label": "Czekam na wskazówki zespołu", "score": 2 },
+        { "id": "C", "label": "Używam dopiero, gdy muszę", "score": 1 }
+      ]
+    },
+    {
+      "id": "Q3",
+      "text": "Czy masz plan rozwoju (np. lista kursów / mini-projekty) na 90 dni?",
+      "choices": [
+        { "id": "A", "label": "Tak, i realizuję", "score": 3 },
+        { "id": "B", "label": "Wstępny szkic", "score": 2 },
+        { "id": "C", "label": "Nie", "score": 1 }
+      ]
+    }
+  ],
+  "scoring": [
+    { "min": 3, "max": 4, "segment": "STARTER", "advice": "Zacznij od podstaw i planu 90 dni. 2–3 krótkie kursy + mini-projekty." },
+    { "min": 5, "max": 7, "segment": "GROW", "advice": "Wprowadź praktykę projektową, portfolio i regularne code/ops reviews." },
+    { "min": 8, "max": 9, "segment": "PRO", "advice": "Skaluj: automatyzacja workflow, mentoring, udział w wdrożeniach z KPI." }
+  ]
+}

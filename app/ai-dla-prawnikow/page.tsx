@@ -2,10 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-export const metadata = {
-  title: 'AI dla Prawników — Baltic Digital Institute',
-  description: 'Szkolenia AI dla kancelarii: analiza umów, automatyzacja pism, KPI.'
-}
+
 
 export default function Page(){
   const [state, setState] = useState({ name:'', email:'', kancelaria:'', message:'', agree:false, hp:'' })

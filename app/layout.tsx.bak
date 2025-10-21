@@ -43,7 +43,6 @@ export default function RootLayout({
     <html lang="pl">
       <body className={`${inter.variable} ${spaceGrotesk.variable} bg-background text-white font-body`}>
         <Header />
-<EnrollBar />
         <main>{children}</main>
         <Footer />
       </body>

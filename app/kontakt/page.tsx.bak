@@ -56,7 +56,7 @@ export default function KontaktPage() {
         <p className="text-text-secondary">Twoja wiadomość została zapisana. Skontaktujemy się jak najszybciej.</p>
       <OrgStamp />
 <OrgStamp />
-<OrgStamp />\n</section>
+</section>
     )
   }
 
@@ -102,7 +102,7 @@ export default function KontaktPage() {
       </form>
     <OrgStamp />
 <OrgStamp />
-<OrgStamp />\n</section>
+</section>
   )
 }
 

@@ -1,6 +1,5 @@
-import OrgStamp from "@/components/OrgStamp"\nimport OrgStamp from "@/components/OrgStamp"
-import OrgStamp from "@/components/OrgStamp"
 'use client'
+import OrgStamp from "@/components/OrgStamp"
 import { useState } from 'react'
 import Link from 'next/link'
 

@@ -1,4 +1,3 @@
-// app/ai-dla-ngo/page.tsx
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import LeadNgoForm from '@/components/forms/LeadNgoForm';
@@ -9,26 +8,15 @@ export const metadata: Metadata = {
   description:
     'Zwiększ skuteczność swojej organizacji! Weź udział w certyfikowanych szkoleniach AI dla NGO i zautomatyzuj pisanie grantów. Zdobądź do 88% dofinansowania z UE dla NGO z Warszawy. Pomożemy Ci w formalnościach. Sprawdź!',
   keywords: [
-    'AI dla NGO',
-    'szkolenia AI',
-    'sztuczna inteligencja',
-    'kursy dla NGO',
-    'dofinansowanie dla NGO',
-    'dotacje UE',
-    'pisanie grantów',
-    'fundacje',
-    'stowarzyszenia',
-    'trzeci sektor',
-    'Baltic Digital Institute',
-    'Warszawska Akademia Kwalifikacji',
-    'szkolenia Warszawa',
+    'AI dla NGO', 'szkolenia AI', 'sztuczna inteligencja', 'kursy dla NGO',
+    'dofinansowanie dla NGO', 'dotacje UE', 'pisanie grantów', 'fundacje',
+    'stowarzyszenia', 'trzeci sektor', 'Baltic Digital Institute',
+    'Warszawska Akademia Kwalifikacji', 'szkolenia Warszawa',
   ],
   alternates: { canonical: 'https://www.baltic-digital.org/ai-dla-ngo' },
   openGraph: {
-    title:
-      'AI dla NGO — Certyfikowane szkolenia z dofinansowaniem | Baltic Digital Institute',
-    description:
-      'Zdobądź do 88% dofinansowania na certyfikowane szkolenia AI dla NGO (Warszawa). Automatyzuj grantwritingu i komunikację. Pomożemy w formalnościach.',
+    title: 'AI dla NGO — Certyfikowane szkolenia z dofinansowaniem | Baltic Digital Institute',
+    description: 'Zdobądź do 88% dofinansowania na certyfikowane szkolenia AI dla NGO (Warszawa). Automatyzuj grantwriting i komunikację. Pomożemy w formalnościach.',
     url: 'https://www.baltic-digital.org/ai-dla-ngo',
     type: 'website',
   },
@@ -42,7 +30,6 @@ const LI = ({ children }: { children: React.ReactNode }) => (
 export default function AiDlaNgoPage() {
   return (
     <main className="text-bdi-granat">
-      {/* SEKCJA 1/7 — HERO */}
       <section className="bg-bdi-granat text-white">
         <div className="container mx-auto px-6 py-20 md:py-28">
           <h1 className="font-heading text-4xl md:text-5xl text-bdi-turkus max-w-4xl">
@@ -54,25 +41,18 @@ export default function AiDlaNgoPage() {
             na certyfikowane szkolenie AI dla Twojej organizacji. Pomożemy Ci
             przejść przez cały proces.
           </p>
-
           <div className="mt-8 grid gap-6 md:grid-cols-3 bg-white/5 p-6 rounded-2xl">
             <div className="text-sm text-bdi-szary-tekst">
               <p className="font-semibold text-white mb-2">Kto się kwalifikuje?</p>
               <ul className="list-disc list-inside">
                 <LI>Miejsce zamieszkania: Warszawa</LI>
                 <LI>Wiek: 18+</LI>
-                <LI>
-                  Osoba fizyczna nieprowadząca działalności gospodarczej
-                </LI>
+                <LI>Osoba fizyczna nieprowadząca działalności gospodarczej</LI>
               </ul>
-              <a
-                href="/kontakt?intent=NGO_Alternatywne_Programy"
-                className="inline-block mt-4 underline hover:text-bdi-turkus"
-              >
+              <a href="/kontakt?intent=NGO_Alternatywne_Programy" className="inline-block mt-4 underline hover:text-bdi-turkus">
                 Zapytaj o inny, dopasowany program »
               </a>
             </div>
-
             <div className="md:col-span-2 bg-white/10 rounded-xl p-4 md:p-6">
               <LeadNgoForm intentId="LP_NGO" leadSource="LP NGO" />
             </div>
@@ -97,7 +77,7 @@ export default function AiDlaNgoPage() {
                 Technologia mogłaby pomóc, ale nie wiesz, od czego zacząć?
               </LI>
             </ul>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 dark:text-bdi-szary-tekst leading-relaxed">
               To nie jest problem jednej organizacji — to systemowe wyzwanie
               całego trzeciego sektora. Chroniczny brak zasobów zmusza do pracy
               w trybie „ludzi-orkiestry”. Dziś są jednak rozwiązania, które
@@ -337,7 +317,6 @@ export default function AiDlaNgoPage() {
         </div>
       </section>
 
-      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -351,18 +330,8 @@ export default function AiDlaNgoPage() {
               url: 'https://www.baltic-digital.org',
             },
             offers: [
-              {
-                '@type': 'Offer',
-                price: '244',
-                priceCurrency: 'PLN',
-                category: 'Workshop',
-              },
-              {
-                '@type': 'Offer',
-                price: '955',
-                priceCurrency: 'PLN',
-                category: 'Course',
-              },
+              { '@type': 'Offer', price: '244', priceCurrency: 'PLN', category: 'Workshop' },
+              { '@type': 'Offer', price: '955', priceCurrency: 'PLN', category: 'Course' },
             ],
           }),
         }}

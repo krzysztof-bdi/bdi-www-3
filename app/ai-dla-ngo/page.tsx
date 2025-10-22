@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 const LI = ({ children }: { children: React.ReactNode }) => (
-  <li className="mb-2 leading-relaxed text-gray-700">{children}</li>
+  <li className="mb-2 leading-relaxed text-gray-700 dark:text-bdi-szary-tekst">{children}</li>
 );
 
 export default function AiDlaNgoPage() {
@@ -169,7 +169,7 @@ export default function AiDlaNgoPage() {
               <h3 className="font-heading text-2xl mb-2">
                 Kurs Wprowadzający ⚡️ (6h)
               </h3>
-              <p className="text-gray-700">
+              <p className="text-gray-700 dark:text-bdi-szary-tekst">
                 Zredukuj czas pisania jednego wniosku o 80% i zwiększ skuteczność.
               </p>
               <a
@@ -266,7 +266,7 @@ export default function AiDlaNgoPage() {
                 <div className="h-40 w-full bg-gray-100 rounded-xl mb-4" />
                 <h3 className="font-heading text-xl">{p.name}</h3>
                 <p className="text-sm text-bdi-turkus font-semibold">{p.role}</p>
-                <p className="mt-2 text-gray-700">{p.desc}</p>
+                <p className="mt-2 text-gray-700 dark:text-bdi-szary-tekst">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -279,7 +279,7 @@ export default function AiDlaNgoPage() {
           <h2 className="font-heading text-3xl md:text-4xl mb-6">
             Zabezpiecz swoje miejsce z dofinansowaniem – jak aplikować
           </h2>
-          <ol className="list-decimal list-inside space-y-2 max-w-3xl text-gray-700">
+          <ol className="list-decimal list-inside space-y-2 max-w-3xl text-gray-700 dark:text-bdi-szary-tekst">
             <li>
               Wypełnij krótki formularz — rezerwujesz miejsce i startujemy z
               formalnościami.

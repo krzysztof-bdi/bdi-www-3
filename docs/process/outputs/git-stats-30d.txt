@@ -1,0 +1,191 @@
+commit 257106e01abab3b228a0a398ebfd4e2d5d93c08c
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Tue Oct 21 19:43:16 2025 +0200
+
+    fix(api): ensure POST is exported and files are valid modules
+
+ 3 files changed, 53 insertions(+), 15 deletions(-)
+
+commit c632e6456102ca9d7bb43c952e9bf126e0981c12
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Tue Oct 21 19:38:13 2025 +0200
+
+    fix(kontakt): clean stray \nimport, ensure single 'use client' and OrgStamp import
+
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit bc070a64eaf31d3457a5970076e9409a50654ea9
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Tue Oct 21 19:31:16 2025 +0200
+
+    fix(head): replace with minimal valid Head() component
+
+ 1 file changed, 5 insertions(+), 21 deletions(-)
+
+commit 8036a44cb10d656b0027bc3b2cea80327a7ca0b0
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Tue Oct 21 19:02:39 2025 +0200
+
+    fix(lp): correct useState + 'use client'; fix API ip parsing
+
+ 6 files changed, 282 insertions(+), 161 deletions(-)
+
+commit 9bddd7a95184472dc2532e69b159daab6fc58419
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Tue Oct 21 17:50:16 2025 +0200
+
+    chore: tidy up pages & env, ready to deploy
+
+ 19 files changed, 474 insertions(+), 312 deletions(-)
+
+commit 444a5f05c87052f51f00992b4bfa8b10086babff
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Mon Oct 20 21:06:34 2025 +0200
+
+    chore(config): Pin Node 20.x version for Vercel stability
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a433df925a4020e008da8b8a12d1b8d1d2cea1f8
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Mon Oct 20 20:44:32 2025 +0200
+
+    fix(redeploy): Restarting Vercel deployment after repeated infrastructure error
+
+ 4 files changed, 3 insertions(+), 12 deletions(-)
+
+commit 5936e6613f9ee80847fdece0eba44f34be8c8960
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Mon Oct 20 20:40:32 2025 +0200
+
+    feat(seo): Move metadata export to dedicated layout.tsx files for client components
+
+ 3 files changed, 24 insertions(+)
+
+commit 2dfd423af4cdd87bd438ac9e43912020b2772498
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Mon Oct 20 20:32:35 2025 +0200
+
+    feat(lp): 3 landing pages (/ai-dla-ngo, /ai-dla-ciebie, /ai-dla-prawnikow) + API (HMAC→n8n) + ENV + sitemap
+
+ 9 files changed, 376 insertions(+), 14 deletions(-)
+
+commit 269f7d57686a8fd2efb43f094c659c84dbc3b2db
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Mon Oct 20 01:26:25 2025 +0200
+
+    feat: kalkulator finansowania podłączony do danych (Mazowieckie/Pomorskie) + UI
+
+ 2 files changed, 112 insertions(+), 64 deletions(-)
+
+commit 899d8f410a5f80eccf7e73841cca4ab69d9b1ab8
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Mon Oct 20 01:18:31 2025 +0200
+
+    feat: Implement Intent_ID/Verification_Status, add quiz/programs data, and finalize SEO base URL
+
+ 8 files changed, 132 insertions(+), 51 deletions(-)
+
+commit 8652a7d72272264e059b2c6b2e0cfe87870041c7
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sun Oct 19 23:09:05 2025 +0200
+
+    refactor: move HMAC signature to server-side for security
+
+ 1 file changed, 3 deletions(-)
+
+commit 9f478b1f9a239560aff139915d017c81392708d2
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sun Oct 19 21:41:29 2025 +0200
+
+    feat: add main page for Rozwoj Kariery section
+
+ 1 file changed, 31 insertions(+)
+
+commit 618d1b4d6b28164846ede395a35d0eec458ca413
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sun Oct 19 21:37:20 2025 +0200
+
+    refactor: move HMAC signature to server-side for security
+
+ 7 files changed, 268 insertions(+), 258 deletions(-)
+
+commit dc52a0784a527b08e0d3ade640afded20cac50ab
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sun Oct 19 21:12:57 2025 +0200
+
+    feat: add missing pages and align navigation with SSOT
+
+ 8 files changed, 165 insertions(+), 104 deletions(-)
+
+commit 8603200b6d0782aa367bc2ea7642aac784df30e4
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sun Oct 19 20:27:31 2025 +0200
+
+    feat: integrate secure HMAC lead submission
+
+ 4 files changed, 217 insertions(+), 115 deletions(-)
+
+commit e19c03b9564374596e091cef0abeecd7d62b048c
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 18:10:03 2025 +0200
+
+    feat: implement mobile nav, knowledge pagination, quiz/calculator UX, and SEO basics
+
+ 7 files changed, 320 insertions(+), 125 deletions(-)
+
+commit 570c039ec5956df772b627485c6e8c6f3aac1299
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 17:52:29 2025 +0200
+
+    feat: mobile nav, Knowledge pagination+sort, Zoho integration scaffold
+
+ 4 files changed, 161 insertions(+), 64 deletions(-)
+
+commit c87877071a7684c62649faefb3958a53d9528eea
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 17:31:29 2025 +0200
+
+    feat: secure contact form with honeypot and rate-limit
+
+ 2 files changed, 77 insertions(+), 5 deletions(-)
+
+commit 39ee440d74a96e9e5570f2178c29427c625e67e9
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 17:25:28 2025 +0200
+
+    feat: update footer navigation links
+
+ 1 file changed, 2 insertions(+)
+
+commit 1cf4c77b1a1289c32895ca4beab5296e31f7f60a
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 14:50:38 2025 +0200
+
+    fix: add missing legal and contact pages
+
+ 4 files changed, 108 insertions(+)
+
+commit c4f17c480852409378eebd24c1920587ccda7a46
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 14:42:16 2025 +0200
+
+    feat: content refresh (CMS, Knowledge) + Kontakt form and API
+
+ 5 files changed, 70 insertions(+), 28 deletions(-)
+
+commit 7cb1a5ed1b9ebc794e7d0f8f8804407742a7f775
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Sat Oct 18 14:13:42 2025 +0200
+
+    feat: add Centra Kompetencji & Nasz Wpływ pages
+
+ 3 files changed, 87 insertions(+), 11 deletions(-)
+
+commit 7a36fb2ff4ea1bf30d9171409857de64740079a6
+Author: Krzysztof Rek <krzysztof@baltic-digital.org>
+Date:   Fri Oct 17 19:04:57 2025 +0200
+
+    Initial commit with CMS fetch fix
+
+ 48 files changed, 3018 insertions(+)

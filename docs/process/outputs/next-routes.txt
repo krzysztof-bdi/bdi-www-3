@@ -1,0 +1,38 @@
+Route (app)                                  Size     First Load JS
+┌ ○ /                                        190 B           101 kB
+├ ○ /_not-found                              166 B          87.4 kB
+├ ○ /ai-dla-ciebie                           1.66 kB        97.6 kB
+├ ○ /ai-dla-ngo                              1.71 kB        97.7 kB
+├ ○ /ai-dla-prawnikow                        1.71 kB        97.7 kB
+├ ƒ /api/contact                             0 B                0 B
+├ ƒ /api/lead-dla-ciebie                     0 B                0 B
+├ ƒ /api/lead-finansowanie                   0 B                0 B
+├ ƒ /api/lead-ngo                            0 B                0 B
+├ ƒ /api/lead-prawnikow                      0 B                0 B
+├ ƒ /api/lead-quiz                           0 B                0 B
+├ ○ /centra-kompetencji                      190 B           101 kB
+├ ○ /centrum-zaufania                        166 B          87.4 kB
+├ ○ /dla-administracji                       166 B          87.4 kB
+├ ○ /dla-liderow                             190 B           101 kB
+├ ○ /dla-msp                                 166 B          87.4 kB
+├ ○ /kontakt                                 1.84 kB        97.8 kB
+├ ○ /nasz-system                             294 B          92.7 kB
+├ ○ /nasz-wplyw                              166 B          87.4 kB
+├ ○ /polityka-prywatnosci                    183 B          96.1 kB
+├ ○ /regulamin                               166 B          87.4 kB
+├ ○ /robots.txt                              0 B                0 B
+├ ○ /rozwoj-kariery                          183 B          96.1 kB
+├ ○ /rozwoj-kariery/finansowanie             2.29 kB        89.5 kB
+├ ○ /rozwoj-kariery/test-odpornosci-kariery  1.38 kB        88.6 kB
+├ ○ /sitemap.xml                             0 B                0 B
+├ ƒ /wiedza                                  183 B          96.1 kB
+└ ƒ /wiedza/[slug]                           166 B          87.4 kB
++ First Load JS shared by all                87.2 kB
+  ├ chunks/117-90c074517f4e1a52.js           31.7 kB
+  ├ chunks/fd9d1056-e3d373074663785d.js      53.6 kB
+  └ other shared chunks (total)              1.89 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -10,3 +10,8 @@ body { @apply bg-primary text-text-primary font-body antialiased; }
 .container-p { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
 .link-cta { @apply inline-block rounded-xl border border-accent/30 bg-accent/10 px-5 py-3 font-semibold text-accent hover:bg-accent hover:text-primary transition; }
 .card { @apply rounded-2xl bg-background-secondary/50 border border-white/5 shadow-card; }
+input[type='text'],
+input[type='email'],
+input[type='tel'] {
+  color: #0A192F; /* bdi-granat */
+}

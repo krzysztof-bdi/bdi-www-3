@@ -62,14 +62,14 @@ export default function LeadNgoForm({ intentId, leadSource }: Props) {
           name="name"
           required
           placeholder="Imię i nazwisko"
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 bg-white text-bdi-granat placeholder:text-bdi-granat/60 border rounded-lg"
         />
         <input
           name="email"
           type="email"
           required
           placeholder="Adres e-mail"
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 bg-white text-bdi-granat placeholder:text-bdi-granat/60 border rounded-lg"
         />
       </div>
 
@@ -77,12 +77,12 @@ export default function LeadNgoForm({ intentId, leadSource }: Props) {
         <input
           name="phone"
           placeholder="Telefon (opcjonalnie)"
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 bg-white text-bdi-granat placeholder:text-bdi-granat/60 border rounded-lg"
         />
         <input
           name="org"
           placeholder="Nazwa organizacji / grupy nieformalnej (opcjonalnie)"
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 bg-white text-bdi-granat placeholder:text-bdi-granat/60 border rounded-lg"
         />
       </div>
 

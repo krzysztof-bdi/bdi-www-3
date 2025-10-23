@@ -34,19 +34,19 @@ const TEAM: Person[] = [
     name: 'Krzysztof Rek',
     role: 'Architekt AI i Strateg',
     desc: 'Menedżer, który wdrażał systemy IT w globalnych koncernach, przedsiębiorca i założyciel fundacji. Krzysztof zaprojektuje dla Ciebie strategię wdrożenia AI, tłumacząc skomplikowaną technologię na praktyczne, zrozumiałe rozwiązania.',
-    img: '/images/team/krzysztof-rek.webp', width: 800, height: 800,
+    img: '/assets/team/krzysztof-rek.webp', width: 800, height: 800,
   },
   {
     name: 'Małgorzata',
     role: 'Twoja dedykowana opiekunka',
     desc: 'Gosia to Twój pierwszy kontakt i przewodnik po całym procesie. Pomoże Ci w formalnościach związanych z dofinansowaniem, odpowie na wszystkie pytania organizacyjne i zadba o to, abyś czuł/a się zaopiekowany/a na każdym kroku - od pierwszego maila po odbiór certyfikatu.',
-    img: '/images/team/malgorzata.webp', width: 800, height: 800,
+    img: '/assets/team/malgorzata.webp', width: 800, height: 800,
   },
   {
     name: 'Olga Szudzik',
     role: 'Analityczka procesowa',
     desc: 'Olga pomoże zmapować i zrozumieć procesy w Twojej organizacji. Jej analityczne spojrzenie pozwoli zidentyfikować te obszary, w których automatyzacja przyniesie najszybsze i największe korzyści, zapewniając, że wdrożenie AI będzie idealnie dopasowane do Waszych realnych potrzeb.',
-    img: '/images/team/olga-szudzik.webp', width: 800, height: 800,
+    img: '/assets/team/olga-szudzik.webp', width: 800, height: 800,
   },
 ];
 
@@ -218,7 +218,7 @@ export default function AiDlaNgoPage() {
             {TEAM.map((p) => (
               <div key={p.name} className="bg-white p-6 rounded-2xl border border-gray-200">
                 <Image
-                  src={p.img ?? '/images/team/placeholder-4x5.webp'}
+                  src={p.img ?? '/assets/team/placeholder-4x5.webp'}
                   alt={p.name}
                   width={p.width ?? 800}
                   height={p.height ?? 800}

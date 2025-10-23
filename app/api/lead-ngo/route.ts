@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { sendToN8n } from '@/lib/webhook';
 
-// Sekcja 2.3 — preskryptywny szkielet: walidacja zod + honeypot + payload z dynamicznym Intent_ID
 const LeadSchema = z.object({
   Name: z.string().min(1),
   Email: z.string().email(),
@@ -18,16 +17,21 @@ const LeadSchema = z.object({
 });
 
 export async function POST(req: Request) {
+  console.log('[lead-ngo] Otrzymano zapytanie...');
   try {
     const data = LeadSchema.parse(await req.json());
 
-    // honeypot — ciche odrzucenie spamu
-    if (data.hp) return NextResponse.json({ ok: true });
+    if (data.hp) {
+      console.log('[lead-ngo] Wykryto Honeypot, ciche odrzucenie.');
+      return NextResponse.json({ ok: true });
+    }
 
     const webhookUrl = process.env.N8N_WEBHOOK_NGO;
-    if (!webhookUrl) throw new Error('Missing N8N_WEBHOOK_NGO');
+    if (!webhookUrl) {
+      console.error('[lead-ngo] Błąd krytyczny: Brak zmiennej N8N_WEBHOOK_NGO.');
+      throw new Error('Missing N8N_WEBHOOK_NGO');
+    }
 
-    // payload do integracji (np. n8n → CRM)
     const payload = {
       Name: data.Name,
       Email: data.Email,
@@ -36,16 +40,20 @@ export async function POST(req: Request) {
       Interest_Intro: data.Interest_Intro,
       Interest_Premium: data.Interest_Premium,
       Lead_Source: data.Lead_Source || 'LP NGO',
-      Intent_ID: data.Intent_ID, // dynamiczny z formy/komponentu
+      Intent_ID: data.Intent_ID,
       Marketing_Consent: data.Marketing_Consent,
-      UTM_Source: '', // opcjonalnie: uzupełnić po stronie klienta
+      UTM_Source: '',
       UTM_Medium: '',
       UTM_Campaign: '',
     };
 
+    console.log('[lead-ngo] Próba wysłania danych do n8n...');
     await sendToN8n(webhookUrl, payload);
+    
+    console.log('[lead-ngo] Sukces, wysłano dane.');
     return NextResponse.json({ ok: true });
   } catch (e: any) {
+    console.error('[lead-ngo] BŁĄD KRYTYCZNY:', e.message);
     return NextResponse.json({ ok: false, error: e.message }, { status: 400 });
   }
 }

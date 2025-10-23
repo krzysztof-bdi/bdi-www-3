@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const LI = ({ children }: { children: React.ReactNode }) => (
-  <li className="mb-2 leading-relaxed text-gray-700 dark:text-bdi-szary-tekst">{children}</li>
+const LI = ({ children, className =  }: { children: React.ReactNode; className?: string }) => (
+  <li className={`mb-2 leading-relaxed text-gray-700 dark:text-bdi-szary-tekst ${className}`}>{children}</li>
 );
 
 export default function AiDlaNgoPage() {
@@ -56,11 +56,11 @@ export default function AiDlaNgoPage() {
           </p>
 
           <div className="mt-8 grid gap-6 md:grid-cols-3 bg-white/5 p-6 rounded-2xl">
-            <div className="text-sm text-bdi-szary-tekst">
+            <div className="text-sm text-white/90">
               <p className="font-semibold text-white mb-2">Kto się kwalifikuje?</p>
               <ul className="list-disc list-inside">
-                <LI>Miejsce zamieszkania: Warszawa</LI>
-                <LI>Wiek: 18+</LI>
+                <LI className="!text-white/90">Miejsce zamieszkania: Warszawa</LI>
+                <LI className="!text-white/90">Wiek: 18+</LI>
                 <LI>
                   Osoba fizyczna nieprowadząca działalności gospodarczej
                 </LI>

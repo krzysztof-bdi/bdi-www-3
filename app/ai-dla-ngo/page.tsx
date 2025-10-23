@@ -187,7 +187,7 @@ export default function AiDlaNgoPage() {
                 desc:
                   'Mapuje procesy organizacji i wskazuje miejsca największych efektów automatyzacji.',
               },
-            ].map((p) => (
+            ] as {name:string; role:string; desc:string; img:string; width:number; height:number}[]).map((p) => (
               <div
                 key={p.name}
                 className="bg-white p-6 rounded-2xl border border-gray-200"

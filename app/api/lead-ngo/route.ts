@@ -1,7 +1,8 @@
-// app/api/lead-ngo/route.ts
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { sendToN8n } from '@/lib/webhook';
+
+export const dynamic = 'force-dynamic';
 
 const LeadSchema = z.object({
   Name: z.string().min(1),
@@ -17,20 +18,15 @@ const LeadSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  console.log('[lead-ngo] Otrzymano zapytanie...');
   try {
+    console.log('[lead-ngo] start');
     const data = LeadSchema.parse(await req.json());
-
     if (data.hp) {
-      console.log('[lead-ngo] Wykryto Honeypot, ciche odrzucenie.');
+      console.log('[lead-ngo] honeypot');
       return NextResponse.json({ ok: true });
     }
-
     const webhookUrl = process.env.N8N_WEBHOOK_NGO;
-    if (!webhookUrl) {
-      console.error('[lead-ngo] Błąd krytyczny: Brak zmiennej N8N_WEBHOOK_NGO.');
-      throw new Error('Missing N8N_WEBHOOK_NGO');
-    }
+    if (!webhookUrl) throw new Error('Missing N8N_WEBHOOK_NGO');
 
     const payload = {
       Name: data.Name,
@@ -47,13 +43,11 @@ export async function POST(req: Request) {
       UTM_Campaign: '',
     };
 
-    console.log('[lead-ngo] Próba wysłania danych do n8n...');
     await sendToN8n(webhookUrl, payload);
-    
-    console.log('[lead-ngo] Sukces, wysłano dane.');
+    console.log('[lead-ngo] success');
     return NextResponse.json({ ok: true });
   } catch (e: any) {
-    console.error('[lead-ngo] BŁĄD KRYTYCZNY:', e.message);
-    return NextResponse.json({ ok: false, error: e.message }, { status: 400 });
+    console.error('[lead-ngo] error', e?.message || e);
+    return NextResponse.json({ ok: false, error: String(e?.message || e) }, { status: 400 });
   }
 }

@@ -44,7 +44,7 @@ export default function AiDlaNgoPage() {
     <main className="text-bdi-granat">
       {/* SEKCJA 1/7 — HERO */}
       <section className="bg-bdi-granat text-white">
-        <div className="container mx-auto px-6 py-20 md:py-28">
+        <div className="container mx-auto px-6 py-16 md:py-20">
           <h1 className="font-heading text-4xl md:text-5xl text-bdi-turkus max-w-4xl">
             Twoja misja zwielokrotniona przez AI. Koniec z papierami, czas na
             realny wpływ.
@@ -55,7 +55,7 @@ export default function AiDlaNgoPage() {
             przejść przez cały proces.
           </p>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-3 bg-white/5 p-6 rounded-2xl">
+          <div className="mt-8 grid gap-6 md:grid-cols-2 bg-white/5 p-6 rounded-2xl">
             <div className="text-sm text-white/90">
               <p className="font-semibold text-white mb-2">Kto się kwalifikuje?</p>
               <ul className="list-disc list-inside">
@@ -67,7 +67,7 @@ export default function AiDlaNgoPage() {
               </ul>
               <a
                 href="/kontakt?intent=NGO_Alternatywne_Programy"
-                className="inline-block mt-4 underline hover:text-bdi-turkus"
+                className="inline-block mt-4 underline text-white hover:text-bdi-turkus"
               >
                 Zapytaj o inny, dopasowany program »
               </a>
@@ -76,6 +76,7 @@ export default function AiDlaNgoPage() {
             <div className="md:col-span-2 bg-white/10 rounded-xl p-4 md:p-6">
               <LeadNgoForm intentId="LP_NGO" leadSource="LP NGO" />
             </div>
+          <p className="text-xs text-gray-500 mt-1">Zalecany wymiar zdjęcia: 800×800 px</p>
           </div>
         </div>
       </section>
@@ -86,17 +87,9 @@ export default function AiDlaNgoPage() {
           <h2 className="font-heading text-3xl md:text-4xl mb-6">
             Więcej misji, mniej biurokracji.
           </h2>
+<p className="mt-2 text-gray-700 dark:text-bdi-szary-tekst max-w-3xl">W BDI nie kupujesz kursu, ale dołączasz do ekosystemu wsparcia. Nad Twoim sukcesem będzie czuwał dedykowany zespół ekspertów, którzy rozumieją unikalne wyzwania trzeciego sektora.</p>
           <div className="grid md:grid-cols-2 gap-8">
-            <ul className="list-disc list-inside">
-              <LI>Toniesz we wnioskach, raportach i mailach?</LI>
-              <LI>Pisanie grantów jest powtarzalne i wyczerpujące?</LI>
-              <LI>
-                Brakuje rąk do pracy i budżetu na komunikację i fundraising?
-              </LI>
-              <LI>
-                Technologia mogłaby pomóc, ale nie wiesz, od czego zacząć?
-              </LI>
-            </ul>
+            <ul className="list-disc list-inside space-y-2"><li>Automatyzacja grantwritingu i komunikacji: Nauczysz się bezpiecznie generować spójne teksty do wniosków, postów na social media i newsletterów. Dostaniesz gotowy „AI Prompt Book dla NGO” z szablonami zapytań.</li><li>Zarządzanie projektami na autopilocie: Zaprojektujesz i wdrożysz zautomatyzowane przepływy pracy, by nic Ci nie umknęło.</li><li>Ład cyfrowy i bezpieczeństwo: Dowiesz się, jak chronić dane darczyńców i organizacji przed cyberzagrożeniami (Phishing, RODO). Wygenerujesz drafty kluczowych dokumentów wewnętrznych.</li><li>Marketing i fundraising oparty na AI: Opanujesz podstawy tworzenia grafik i nauczysz się budować strategię komunikacji, która angażuje i zachęca do wsparcia.</li></ul>
             <p className="text-gray-700 leading-relaxed">
               To nie jest problem jednej organizacji — to systemowe wyzwanie
               całego trzeciego sektora. Chroniczny brak zasobów zmusza do pracy
@@ -125,53 +118,21 @@ export default function AiDlaNgoPage() {
                 </tr>
               </thead>
               <tbody className="[&>tr:nth-child(odd)]:bg-gray-50">
-                <tr>
-                  <td className="p-4 font-semibold">Nazwa</td>
-                  <td className="p-4">Błyskawiczne pisanie wniosków grantowych</td>
-                  <td className="p-4">
-                    Strategia AI w Trzecim Sektorze: Kompleksowa transformacja NGO
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold">Idealny dla</td>
-                  <td className="p-4">Szybkie usprawnienie grantwritingu</td>
-                  <td className="p-4">
-                    Strategiczne wdrożenie AI w całej organizacji
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold">Czas trwania</td>
-                  <td className="p-4">6h (1 dzień)</td>
-                  <td className="p-4">21h (3 dni)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold">Status</td>
-                  <td className="p-4">Nabycie kompetencji</td>
-                  <td className="p-4">
-                    Uzyskanie kwalifikacji (preferencyjne dofinansowanie)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-semibold">Cena / Dofinansowanie</td>
-                  <td className="p-4">
-                    2 000 PLN — dofinansowanie 1 756 PLN → Twój wkład: 244 PLN
-                  </td>
-                  <td className="p-4">
-                    7 950 PLN — dofinansowanie 6 995 PLN → Twój wkład: 955 PLN
-                  </td>
-                </tr>
-              </tbody>
+<tr><td className="p-4 font-semibold">Nazwa</td><td className="p-4">Błyskawiczne pisanie wniosków grantowych</td><td className="p-4">Kompleksowa transformacja NGO</td></tr>
+<tr><td className="p-4 font-semibold">Idealny dla</td><td className="p-4">Osób chcących natychmiast rozwiązać problem czasochłonnego pisania grantów.</td><td className="p-4">Zaangażowanych społeczników gotowych na strategiczne wdrożenie AI w całej organizacji.</td></tr>
+<tr><td className="p-4 font-semibold">Główny cel</td><td className="p-4">Automatyzacja 80% pracy administracyjnej przy tworzeniu wniosków.</td><td className="p-4">Automatyzacja wszystkich głównych procesów w organizacji</td></tr>
+<tr><td className="p-4 font-semibold">Czas trwania</td><td className="p-4">6 godzin dydaktycznych (1 dzień)</td><td className="p-4">21 godzin dydaktycznych (3 dni)</td></tr>
+<tr><td className="p-4 font-semibold">Status usługi</td><td className="p-4">Nabycie kompetencji.</td><td className="p-4">Uzyskanie kwalifikacji</td></tr>
+<tr><td className="p-4 font-semibold">Całkowity koszt</td><td className="p-4">2 000 PLN</td><td className="p-4">7 950 PLN</td></tr>
+<tr><td className="p-4 font-semibold">Dofinansowanie</td><td className="p-4">1 756 PLN</td><td className="p-4">6 995 PLN</td></tr>
+<tr><td className="p-4 font-semibold">Twój wkład (cena dla Ciebie)</td><td className="p-4">244 PLN</td><td className="p-4">955 PLN</td></tr>
+</tbody>
             </table>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mt-10">
             <div className="p-6 bg-white rounded-2xl border border-gray-200">
-              <h3 className="font-heading text-2xl mb-2">
-                Kurs Wprowadzający ⚡️ (6h)
-              </h3>
-              <p className="text-gray-700 dark:text-bdi-szary-tekst">
-                Zredukuj czas pisania jednego wniosku o 80% i zwiększ skuteczność.
-              </p>
+              <h3 className="font-heading text-2xl mb-2">AI dla NGO: Błyskawiczne pisanie wniosków grantowych (6h)</h3><p className="text-gray-700 dark:text-bdi-szary-tekst">Zredukuj czas pisania jednego wniosku o 80% i zwiększ swoje szanse na finansowanie. To intensywny, 6-godzinny warsztat, który da Ci natychmiastowe rezultaty.</p><div className="mt-3"><p className="font-semibold mb-1">Czego się nauczysz:</p><ul className="list-disc list-inside space-y-1"><li>Pisać efektywne prompty, by AI generowało spójne fragmenty wniosków.</li><li>Korzystać z 3 darmowych narzędzi AI dedykowanych do grantwritingu.</li><li>Adaptować wygenerowane treści do wymogów różnych konkursów.</li></ul></div>
               <a
                 href="/kontakt?intent=NGO_Warsztat_Grantwriting"
                 className="inline-block mt-4 px-6 py-3 rounded-full bg-bdi-turkus text-bdi-granat font-bold hover:bg-white border border-bdi-turkus transition"
@@ -180,17 +141,7 @@ export default function AiDlaNgoPage() {
               </a>
             </div>
             <div className="p-6 bg-white rounded-2xl border border-gray-200">
-              <h3 className="font-heading text-2xl mb-2">
-                Kurs Premium 🚀 (21h)
-              </h3>
-              <ul className="list-disc list-inside">
-                <LI>
-                  Ład cyfrowy i bezpieczeństwo (RODO, phishing) + drafty
-                  polityk/regulaminów
-                </LI>
-                <LI>Automatyzacja procesów (workflow w Trello/ClickUp)</LI>
-                <LI>Fundraising i komunikacja oparte na AI</LI>
-              </ul>
+              <h3 className="font-heading text-2xl mb-2">Strategia AI w Trzecim Sektorze: Kompleksowa transformacja NGO (21h)</h3><p className="text-gray-700 dark:text-bdi-szary-tekst">Zautomatyzuj wszystkie główne procesy w swojej organizacji. To kompleksowy, 3-dniowy program, który kończy się uzyskaniem formalnej kwalifikacji i wyposaża Cię w strategiczne kompetencje do zarządzania, automatyzacji i fundraisingu.</p><div className="mt-3"><p className="font-semibold mb-1">Tego się nauczysz:</p><ul className="list-disc list-inside space-y-2"><li><span className="font-semibold">Ład cyfrowy i bezpieczeństwo:</span> Dowiesz się, jak chronić dane darczyńców i organizacji przed cyberzagrożeniami (Phishing, RODO). Wygenerujesz drafty kluczowych dokumentów wewnętrznych, takich jak: polityka prywatności, regulamin organizacyjny, spis zasobów organizacji.</li><li><span className="font-semibold">Automatyzacja procesów:</span> Zbudujesz zautomatyzowane ścieżki pracy (workflow) dla zadań administracyjnych i zarządczych przy użyciu narzędzi takich jak Trello czy ClickUp.</li><li><span className="font-semibold">Fundraising i komunikacja:</span> Nauczysz się wykorzystywać AI do tworzenia kampanii, komunikacji z darczyńcami i analizy danych, aby zwiększyć skuteczność zbiórek.</li></ul></div>
               <a
                 href="/kontakt?intent=NGO_Premium_Transformacja"
                 className="inline-block mt-4 px-6 py-3 rounded-full bg-bdi-turkus text-bdi-granat font-bold hover:bg-white border border-bdi-turkus transition"
@@ -220,12 +171,7 @@ export default function AiDlaNgoPage() {
               <LI>Ład cyfrowy i bezpieczeństwo — gotowe drafty dokumentów</LI>
               <LI>Marketing i fundraising oparty na AI</LI>
             </ul>
-            <div className="bg-bdi-jasny rounded-2xl p-6">
-              <p className="text-sm text-gray-600">
-                Dodatkowo: certyfikat nabycia kwalifikacji/kompetencji, komplet
-                materiałów oraz 3 miesiące dostępu do platformy e-learningowej.
-              </p>
-            </div>
+            <div className="bg-bdi-jasny rounded-2xl p-6 border border-bdi-granat/20"><p className="text-sm text-gray-800 font-semibold">Dodatkowe korzyści: Każdy uczestnik otrzymuje certyfikat nabycia kwalifikacji/kompetencji, komplet materiałów szkoleniowych i 3-miesięczny darmowy dostęp do naszej platformy e-learningowej.</p></div>
           </div>
         </div>
       </section>
@@ -238,7 +184,7 @@ export default function AiDlaNgoPage() {
           </h2>
         </div>
         <div className="container mx-auto px-6 pb-16 md:pb-20">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
                 name: 'Krzysztof Rek',
@@ -263,7 +209,7 @@ export default function AiDlaNgoPage() {
                 key={p.name}
                 className="bg-white p-6 rounded-2xl border border-gray-200"
               >
-                <div className="h-40 w-full bg-gray-100 rounded-xl mb-4" />
+                <div className="h-64 w-full bg-gray-100 rounded-xl mb-2" />
                 <h3 className="font-heading text-xl">{p.name}</h3>
                 <p className="text-sm text-bdi-turkus font-semibold">{p.role}</p>
                 <p className="mt-2 text-gray-700 dark:text-bdi-szary-tekst">{p.desc}</p>
@@ -292,9 +238,6 @@ export default function AiDlaNgoPage() {
               Decyzja i start — pomagamy w papierach i przechodzimy do szkolenia.
             </li>
           </ol>
-          <div className="mt-8 bg-bdi-jasny rounded-xl p-4 md:p-6">
-            <LeadNgoForm intentId="LP_NGO" leadSource="LP NGO" />
-          </div>
           <p className="mt-4 text-sm text-gray-600">
             Liczba miejsc w grupie jest ograniczona (do 12 osób).
           </p>
@@ -304,7 +247,7 @@ export default function AiDlaNgoPage() {
       {/* SEKCJA 7/7 — KOŃCOWE CTA / STOPKA LP */}
       <section className="bg-bdi-granat text-white">
         <div className="container mx-auto px-6 py-16 md:py-20">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             <div className="md:col-span-2">
               <h2 className="font-heading text-3xl md:text-4xl text-bdi-turkus mb-4">
                 Gotowi na mniej papierów i więcej efektów?
@@ -312,6 +255,9 @@ export default function AiDlaNgoPage() {
               <p className="text-bdi-szary-tekst">
                 Zarezerwuj miejsce — oddzwonimy i przeprowadzimy przez
                 formalności.
+</p>
+<p className="mt-2 text-bdi-szary-tekst">Nie czekaj, aż inni Cię wyprzedzą. Miejsca są ograniczone.</p>
+<p className="text-bdi-szary-tekst">Liczba miejsc w każdej grupie szkoleniowej jest limitowana - pracujemy w małych grupach do 12 osób, aby zapewnić najwyższą jakość i komfort pracy warsztatowej.
               </p>
             </div>
             <div className="md:col-span-1">

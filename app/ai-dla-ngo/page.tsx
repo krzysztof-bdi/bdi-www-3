@@ -23,9 +23,15 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const LI = ({ children }: { children: React.ReactNode }) => (
-  <li className="mb-2 leading-relaxed text-gray-700 dark:text-bdi-szary-tekst">{children}</li>
+const LI = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+  <li className={["mb-2 leading-relaxed text-gray-700 dark:text-bdi-szary-tekst", className].filter(Boolean).join(" ")}>{children}</li>
 );
+type Person = { name: string; role: string; desc: string; img?: string; width?: number; height?: number };
+const TEAM: Person[] = [
+  { name: "IMIĘ NAZWISKO 1", role: "ROLA 1", desc: "WKLEJ OPIS 1 (pełny, bez skracania).", img: "/images/team/imo-1.webp", width: 800, height: 1000 },
+  { name: "IMIĘ NAZWISKO 2", role: "ROLA 2", desc: "WKLEJ OPIS 2 (pełny, bez skracania).", img: "/images/team/imo-2.webp", width: 800, height: 1000 },
+  { name: "IMIĘ NAZWISKO 3", role: "ROLA 3", desc: "WKLEJ OPIS 3 (pełny, bez skracania).", img: "/images/team/imo-3.webp", width: 800, height: 1000 }
+];
 
 export default function AiDlaNgoPage() {
   return (
@@ -55,7 +61,7 @@ export default function AiDlaNgoPage() {
 </div>
 </section>
 
-      {/* SEKCJA 2/7 — DYLEMAT / PROBLEM */}
+      
       <section className="bg-white">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <h2 className="font-heading text-3xl md:text-4xl mb-6">
@@ -83,7 +89,7 @@ export default function AiDlaNgoPage() {
         </div>
       </section>
 
-      {/* SEKCJA 3/7 — OFERTA / PORÓWNANIE KURSÓW */}
+      
       <section className="bg-bdi-jasny">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <h2 className="font-heading text-3xl md:text-4xl mb-10">
@@ -131,7 +137,7 @@ export default function AiDlaNgoPage() {
         </div>
       </section>
 
-      {/* SEKCJA 4/7 — KORZYŚCI / CO ZYSKASZ */}
+      
       <section className="bg-white">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <h2 className="font-heading text-3xl md:text-4xl mb-6">
@@ -158,7 +164,7 @@ export default function AiDlaNgoPage() {
         </div>
       </section>
 
-      {/* SEKCJA 5/7 — ZESPÓŁ */}
+      
       <section className="bg-gray-50">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <h2 className="font-heading text-3xl md:text-4xl mb-10">
@@ -192,7 +198,7 @@ export default function AiDlaNgoPage() {
                 key={p.name}
                 className="bg-white p-6 rounded-2xl border border-gray-200"
               >
-                <Image src={p.img} alt={p.name} width={p.width} height={p.height} className="w-full h-auto rounded-xl mb-4 object-cover" />
+                <Image src={p.img ?? "/images/team/placeholder-4x5.webp"} alt={p.name} width={p.width ?? 800} height={p.height ?? 1000} className="w-full h-auto rounded-xl mb-4 object-cover" />
                 <h3 className="font-heading text-xl">{p.name}</h3>
                 <p className="text-sm text-bdi-turkus font-semibold">{p.role}</p>
                 <p className="mt-2 text-gray-700 dark:text-bdi-szary-tekst">{p.desc}</p>
@@ -202,7 +208,7 @@ export default function AiDlaNgoPage() {
         </div>
       </section>
 
-      {/* SEKCJA 6/7 — JAK APLIKOWAĆ */}
+      
       <section className="bg-white">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <h2 className="font-heading text-3xl md:text-4xl mb-6">
@@ -224,7 +230,7 @@ export default function AiDlaNgoPage() {
         </div>
       </section>
 
-      {/* SEKCJA 7/7 — KOŃCOWE CTA / STOPKA LP */}
+      
       <section className="bg-bdi-granat text-white">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <div className="grid md:grid-cols-2 gap-6">
